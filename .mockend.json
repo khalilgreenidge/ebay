@@ -1,10 +1,10 @@
 
 {
   "Quote": {
-      type: "success",
-      value: {
-        id: 10,
-        quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
+      "type": "string",
+      "value": {
+        "id": "int",
+        "quote": "Really loving Spring Boot, makes stand alone Spring apps easy."
       }
   }
 }
