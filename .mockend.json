@@ -1,15 +1,11 @@
 
 {
-  "Post": {
-    "title": "string",
-    "views": "int",
-    "published": "boolean",
-    "createdAt": "date",
-    "comments": "Comment[]"
-  },
-  "Comment": {
-    "body": "string",
-    "post": "Post"
+  "Quote": {
+      type: "success",
+      value: {
+        id: 10,
+        quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
+      }
   }
 }
 
