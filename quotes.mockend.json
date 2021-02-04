@@ -1,12 +1,14 @@
 {
-   type: "success",
-   value: {
-      id: 10,
-      quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
-   },
-   type: "success",
-   value: {
-      id: 11,
-      quote: "Without vision, the people will parish."
+   "Quotes" : {
+      type: "success",
+      value: {
+         id: 10,
+         quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
+      },
+      type: "success",
+      value: {
+         id: 11,
+         quote: "Without vision, the people will parish."
+      }
    }
 }
