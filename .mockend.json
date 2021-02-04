@@ -4,7 +4,7 @@
       "type": "string",
       "value": {
         "id": "int",
-        "quote": "Really loving Spring Boot, makes stand alone Spring apps easy."
+        "quote": "string"
       }
   }
 }
