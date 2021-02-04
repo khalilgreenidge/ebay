@@ -1,14 +1,15 @@
+
 {
-   "Quotes" : {
-      type: "success",
-      value: {
-         id: 10,
-         quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
-      },
-      type: "success",
-      value: {
-         id: 11,
-         quote: "Without vision, the people will parish."
-      }
-   }
+  "Post": {
+    "title": "string",
+    "views": "int",
+    "published": "boolean",
+    "createdAt": "date",
+    "comments": "Comment[]"
+  },
+  "Comment": {
+    "body": "string",
+    "post": "Post"
+  }
 }
+
