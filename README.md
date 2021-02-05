@@ -9,6 +9,7 @@ all of the correct dependencies that were available. Kindly see below for the li
 * starter-web
 * Build with Gradle
 
+
 ## Languages/Frameworks
 * Spring Boot Java 
 * HTML
@@ -17,9 +18,12 @@ all of the correct dependencies that were available. Kindly see below for the li
 * JavaScript
 * JSON
 
+
 ## Assumptions
 * N.B - In this project, I had to deliberately avoid using the standard "camelCasing" convention of naming variables, getters and setters. All were deliberately changed to lowercase (and underscores for multiword variables) in order for the application to work properly. The names "delivery_postcode" and "pickup_postcode" had to be consistent throughout the entire project in order for both Spring Boot and JSON to communicate with each other. Kindly, pardon this accommodation I had to make.
+
 * Therefore, testing my project may be best done manually in case certain test cases do not work with the naming of the variables, getters and setters. I can promise you everything works perfectly.
+
 
 ## Basic Service/Price By Vehicle
 Given that various vehicles would have a different markup on the price, I determined the final price by using a switch inside the `calculateNewPrice` method. This method 
