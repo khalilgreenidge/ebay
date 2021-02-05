@@ -28,7 +28,7 @@ This interface was developed using HTML, CSS, JavaScript and  Ajax, which uses t
 to be running Spring Boot server then type `http://localhost:8080/quote` to see the actual Web Interface. Firstly, I created and styled a form to ensure it was responsive 
 with all devices, and applied a theme similar to ebay's business color to make it more appealing and realistic. See below:
 
-![eBay Quote Calculator](/images/calculator1.png)
+![eBay Quote Calculator](calculator1.JPG)
 
 The next problem, was to send the form date to the backend without refreshing the page. Ajax and Javascript
 allowed me to overcome this problem by accessing each form element, concatenating them into a JS Object, then converting them to a JSON Object which was sent to the backend. 
