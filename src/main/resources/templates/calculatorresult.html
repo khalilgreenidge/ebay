@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Quote Form | eBay</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+sans">    
+    <link rel="icon" href="http://www.ebay.com/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .container{
+            width: 60%;
+            padding: 5% 5%;
+            margin: 5% auto;
+            box-sizing: border-box;
+            box-shadow: 1px 5px 9px #eee;
+            border: 3px;
+        }
+
+        .head{  
+            margin-bottom: 40px;
+        }
+        
+        form{
+            font-family: 'Open sans';
+            font-size: 14px;
+            position: relative;
+        }
+
+        form p{
+            margin: 30px 0;
+        }
+
+        input[type="text"], select{
+            position: absolute;
+            left: 220px;
+            width: 180px;
+            border-radius: 3px;
+            border: 1px solid #ccc; 
+        }
+
+        input[type="text"]{
+            padding: 1% 4px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        select{
+            padding: 1% 4px;
+            width: 190px;
+        }
+
+        .img{
+            float: left;
+        }
+
+        h1{
+            font-family: 'open sans';
+            font-weight: 400;
+            margin-left: 20px;
+            display: inline;
+        }
+
+        h2{
+            font-size: 16px;
+        }
+
+        h2 + p{
+            font-size: 14px;
+        }
+
+        .button, a:link{
+            padding: 1.5% 5%;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        a:link, a:visited{text-decoration: none; color: white; font-family: 'open sans';}
+
+        .button.submit, a:link{
+            background: #00509d;
+        }
+
+        .button.reset{
+            color: #00509d;
+            position:absolute;
+            right: 91px;
+        }
+
+       @media screen and (max-width: 900px) {
+            .container{
+                width: 80%;
+            }
+
+            .button.reset{
+                right: 1%;
+            }
+       }
+
+       @media screen and (max-width: 650px) {
+
+            .container{
+                width: 90%;
+            }
+       }
+
+        @media screen and (max-width: 550px) {
+
+            .container{
+                width: 90%;
+            }
+
+            input[type="text"], select{
+                position: absolute;
+                left: initial;
+                right: 5%;
+            }
+        }
+
+        @media screen and (max-width: 447px) {
+
+            input[type="text"], select{
+                position: initial;
+                display: inline-block;
+                left: initial;
+                right: initial;
+            }
+
+        }
+
+
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+
+        <div class="head">
+            <img class="img" src="https://p.ebaystatic.com/aw/pics/logos/logoEbay_x45.gif" alt="ebay logo" /> <h1>Quote Calculator</h1>
+        </div>
+        
+        <div style="font-family: 'open sans';  margin-bottom: 50px;">
+            <h2>Here's your quote:</h2>
+            <p>A delivery from <span th:text="${quote.getpickup_postcode()}" /> to <span th:text="${quote.getdelivery_postcode}" /> using a <span th:text="${quote.getvehicle()}" /> will cost you £<span th:text="${quote.getprice()}" /> </p>
+        </div>
+        
+        <a style="a:link " href="quote" class="botton">Submit another message</a>
+
+    </div>
+	
+</body>
+</html>

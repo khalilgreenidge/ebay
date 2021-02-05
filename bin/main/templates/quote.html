@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Quote Form | eBay</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+sans">
+    <link rel="icon" href="http://www.ebay.com/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .container{
+            width: 60%;
+            padding: 2% 5%;
+            margin: 5% auto;
+            box-sizing: border-box;
+            box-shadow: 1px 5px 9px #eee;
+            border: 3px;
+        }
+
+        .head{  
+            margin-bottom: 40px;
+        }
+        
+        form{
+            font-family: 'Open sans';
+            font-size: 14px;
+            position: relative;
+        }
+
+        form p{
+            margin: 30px 0;
+        }
+
+        input[type="text"], select{
+            position: absolute;
+            left: 220px;
+            width: 180px;
+            border-radius: 3px;
+            border: 1px solid #ccc; 
+        }
+
+        input[type="text"]{
+            padding: 1% 4px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        select{
+            padding: 1% 4px;
+            width: 190px;
+        }
+
+        .img{
+            float: left;
+        }
+
+        h1{
+            font-family: 'open sans';
+            font-weight: 400;
+            margin-left: 20px;
+            display: inline;
+        }
+
+        h2{
+            font-size: 16px;
+        }
+
+        h2 + p{
+            font-size: 14px;
+        }
+
+        .button, a:link, a:visited{
+            padding: 1.5% 5%;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .button.submit, a:link{
+            background: #00509d;
+        }
+
+        .button.reset{
+            color: #00509d;
+            position:absolute;
+            right: 91px;
+        }
+
+        a:link, a:visited{text-decoration: none; color: white; font-family: 'open sans';}
+
+
+       @media screen and (max-width: 900px) {
+            .container{
+                width: 80%;
+                padding: 2% 5%;
+            }
+
+            .button.reset{
+                right: 1%;
+            }
+       }
+
+       @media screen and (max-width: 650px) {
+
+            .container{
+                width: 90%;
+            }
+       }
+
+        @media screen and (max-width: 550px) {
+
+            .container{
+                width: 90%;
+            }
+
+            input[type="text"], select{
+                position: absolute;
+                left: initial;
+                right: 5%;
+            }
+        }
+
+        @media screen and (max-width: 447px) {
+
+            input[type="text"], select{
+                position: initial;
+                display: inline-block;
+                left: initial;
+                right: initial;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="head">
+            <img class="img" src="https://p.ebaystatic.com/aw/pics/logos/logoEbay_x45.gif" alt="ebay logo" /> <h1>Quote Calculator</h1>
+        </div>
+        
+        <div id="form-container">
+            <div style="font-family: 'open sans';  margin-bottom: 50px;">
+                <h2>Enter your delivery details below:</h2>
+                <p>Be sure to include your pickup address, delivery address and the type of vehicle.</p>
+            </div>
+            <form action="#" th:action="@{/quote}" th:object="${quote}" method="post">
+            
+                <p>Pickup Postcode: <input id="pp" value="SW1A1AA" type="text" th:field="*{pickup_postcode}" /></p>
+                <p>Delivery Postcode: <input id="dp" value="EC2A3LT" type="text" th:field="*{delivery_postcode}" /></p>
+                <p>Vehicle: <select id="vehicle" th:field="*{vehicle}">
+                                <option value="bicycle">Bicycle</option> 
+                                <option value="motorbike">Motorbike</option> 
+                                <option value="parcel_car">Parcel car</option> 
+                                <option value="small_van">Small van</option>
+                                <option value="large_van">Large van</option>
+                            </select>
+                </p>
+
+                <p><button type="button" class="button submit" onclick="submitForm()">Submit</button> <input class="button reset" type="reset" value="Reset" /></p-->
+
+                <br/>
+            </form>
+        </div>
+        
+
+
+        <div id="result-container" style="display: none;">
+
+            <div class="head">
+                <h1>Result</h1>
+            </div>
+            
+            <div style="font-family: 'open sans';  margin-bottom: 50px;">
+                <h2>Here's your quote:</h2>
+                <p>A delivery from <span id="return-pp" th:text="${quote.getpickup_postcode()}" /> to <span id="return-dp" th:text="${quote.getdelivery_postcode}" /> using a <span id="return-vehicle" th:text="${quote.getvehicle()}" /> will cost you £<span id="return-price" th:text="${quote.getprice()}" /> </p>
+            </div>
+            
+            <button type="button" class="button submit" onclick="submitAgain()">Submit another message</button>
+    
+        </div>
+
+        <script>
+            function submitForm() {
+
+                
+                //get form items
+                var dp = document.getElementById("dp").value;
+                var pp = document.getElementById("pp").value;
+                var vehicle = document.getElementById("vehicle").value;
+
+                var stringArray = {};
+                stringArray["delivery_postcode"] = dp;
+                stringArray["pickup_postcode"] = pp;
+                stringArray["vehicle"] = vehicle;
+
+                //console.log(JSON.stringify(stringArray));
+                
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        
+                        var array = JSON.parse(this.responseText);
+
+                        //console.log(array);
+
+                        var newpp = document.getElementById("return-pp");
+                        newpp.textContent = array["pickup_postcode"];
+
+                        var newdp = document.getElementById("return-dp");
+                        newdp.textContent = array["delivery_postcode"];
+
+                        var cleanV = array["vehicle"];
+                        var newvehicle = document.getElementById("return-vehicle");
+                        newvehicle.textContent = cleanV.replace("_", " ");
+
+                        var newprice = document.getElementById("return-price");
+                        newprice.textContent = array["price"];
+
+                    }
+                };
+                xhttp.open("POST", "http://localhost:8080/quotes", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(JSON.stringify(stringArray));
+
+                
+
+                var form = document.getElementById("form-container");
+                form.style.display = "none";               
+                var result = document.getElementById("result-container");
+                result.style.display = 'block';
+                
+            }
+
+
+            function submitAgain(){
+
+                var form = document.getElementById("form-container");
+                form.style.display = "block";
+
+                var result = document.getElementById("result-container");
+                result.style.display = "none";
+            }
+        </script>
+
+    </div>
+	
+</body>
+</html>
